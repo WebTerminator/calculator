@@ -6,7 +6,7 @@ A vanilla js calculator
 
 Build a basic calculator with the ability to:
 
-- sum, divide, subtract or multiple numbers
+- sum, divide, subtract or multiply numbers
 - or any combination of the above
 - the current selection, including operators, should always be visible
 - the calculator should have a decent look and feel
