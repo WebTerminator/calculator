@@ -1,0 +1,19 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "A vanilla js calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebTerminator/calculator.git"
+  },
+  "author": "Alessandro Santese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebTerminator/calculator/issues"
+  },
+  "homepage": "https://github.com/WebTerminator/calculator#readme"
+}
