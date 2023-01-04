@@ -1,3 +1,20 @@
 body {
   background-color: #ffa;
 }
+
+.screen {
+  background-color: aqua;
+  height: 100px;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.numbers {
+  display: flex;
+}
+
+.numbers button {
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
