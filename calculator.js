@@ -1,23 +1,33 @@
-// class Calculator {
-//   render() {
-//     // render HTML
-//   }
-// }
-
-// const calculator = new Calculator();
-// calculator.render();
-
 const initCalculator = () => {
   let currentSequence = [];
   let buttons = document.querySelectorAll("button");
 
   buttons.forEach((button) =>
     button.addEventListener("click", (e) => {
-      currentSequence.push(e.target.innerHTML);
+      const currentValue = e.target.innerHTML;
+
+      const lastSequenceValue = currentSequence[currentSequence.length - 1];
+
+      if (
+        currentValue === "+" ||
+        currentValue === "-" ||
+        currentValue === "/" ||
+        currentValue === "x"
+      ) {
+        if (
+          lastSequenceValue === currentValue ||
+          lastSequenceValue === "+" ||
+          lastSequenceValue === "-" ||
+          lastSequenceValue === "/" ||
+          lastSequenceValue === "x"
+        )
+          return false;
+      }
 
       const itemNode = document.createElement("span");
-      itemNode.textContent = e.target.innerHTML;
+      itemNode.textContent = currentValue;
       document.getElementById("screen").appendChild(itemNode);
+      currentSequence.push(currentValue);
     })
   );
 };

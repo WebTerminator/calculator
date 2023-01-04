@@ -7,6 +7,12 @@ body {
   height: 100px;
   width: 400px;
   margin-bottom: 20px;
+  padding: 10px;
+}
+
+.screen span {
+  padding-right: 3px;
+  font-size: 18px;
 }
 
 .numbers {
