@@ -1,4 +1,4 @@
-import { handleItemOnScreen } from "./calculator.helper.js";
+import { handleItemOnScreen, isOperator } from "./calculator.helper.js";
 
 const initCalculator = () => {
   let currentSequence = [],
@@ -20,12 +20,7 @@ const initCalculator = () => {
       document.getElementById("screen").appendChild(item);
       const itemValue = item.innerHTML;
 
-      if (
-        itemValue === "+" ||
-        itemValue === "x" ||
-        itemValue === "/" ||
-        itemValue === "-"
-      ) {
+      if (isOperator(itemValue)) {
         joinedCurrentSequence = "";
       } else {
         currentSequence.push(itemValue);

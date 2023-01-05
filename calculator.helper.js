@@ -4,18 +4,12 @@ const addNumberOnScreen = ({ currentValue, HTMLTag }) => {
   return itemNode;
 };
 
-export const handleItemOnScreen = ({ currentValue, lastSequenceValue }) => {
-  const lastSequenceCondition =
-    lastSequenceValue === "+" ||
-    lastSequenceValue === "-" ||
-    lastSequenceValue === "/" ||
-    lastSequenceValue === "x";
+export const isOperator = (operator) =>
+  operator === "+" || operator === "-" || operator === "/" || operator === "x";
 
-  const isCurrentValueOperator =
-    currentValue === "+" ||
-    currentValue === "-" ||
-    currentValue === "/" ||
-    currentValue === "x";
+export const handleItemOnScreen = ({ currentValue, lastSequenceValue }) => {
+  const lastSequenceCondition = isOperator(lastSequenceValue);
+  const isCurrentValueOperator = isOperator(currentValue);
 
   const isOperatorAlreadyTyped =
     isCurrentValueOperator &&
