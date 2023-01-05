@@ -4,7 +4,8 @@
   "description": "A vanilla js calculator",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": " jest",
+    "server": "http-server"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,12 @@
   },
   "homepage": "https://github.com/WebTerminator/calculator#readme",
   "devDependencies": {
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "http-server": "^14.1.1"
   }
 }
