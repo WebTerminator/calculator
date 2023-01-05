@@ -1,19 +1,38 @@
 import { handleItemOnScreen } from "./calculator.helper.js";
 
 const initCalculator = () => {
-  let currentSequence = [];
-  let buttons = document.querySelectorAll("button");
+  let currentSequence = [],
+    screenSequence = [],
+    joinedCurrentSequence = "",
+    buttons = document.querySelectorAll("button");
 
-  const handleClickEvent = (e) => {
-    const currentValue = e.target.innerHTML;
-    const lastSequenceValue = currentSequence[currentSequence.length - 1];
+  const handleClickEvent = ({ target: { innerHTML } }) => {
+    const currentValue = innerHTML;
 
-    const item = handleItemOnScreen({ currentValue, lastSequenceValue });
+    const lastCurrentSequenceValue = screenSequence[screenSequence.length - 1];
+
+    const item = handleItemOnScreen({
+      currentValue,
+      lastSequenceValue: lastCurrentSequenceValue,
+    });
+
     if (item) {
       document.getElementById("screen").appendChild(item);
+      const itemValue = item.innerHTML;
 
-      currentSequence.push(item.innerHTML);
-      console.log("currentSequence: ", currentSequence);
+      if (
+        itemValue === "+" ||
+        itemValue === "x" ||
+        itemValue === "/" ||
+        itemValue === "-"
+      ) {
+        joinedCurrentSequence = "";
+      } else {
+        currentSequence.push(itemValue);
+        joinedCurrentSequence = currentSequence.join("");
+      }
+
+      screenSequence.push(itemValue);
     }
   };
 
