@@ -10,16 +10,29 @@ describe("calculator", () => {
   });
 
   it("should return the correct item, either a number or an operator or null if there is an operator already", () => {
-    const two = handleItemOnScreen(2, 3);
+    const twoProps = { currentValue: 2, lastSequenceValue: 3 };
+    const two = handleItemOnScreen(twoProps);
     expect(two.innerHTML).toEqual("2");
 
-    const nullOperator = handleItemOnScreen("+", "-");
+    const nullOperatorProps = { currentValue: "+", lastSequenceValue: "-" };
+    const nullOperator = handleItemOnScreen(nullOperatorProps);
     expect(nullOperator).toEqual(null);
 
-    const nullOperatorB = handleItemOnScreen("-", "-");
+    const nullOperatorBProps = { currentValue: "-", lastSequenceValue: "-" };
+    const nullOperatorB = handleItemOnScreen(nullOperatorBProps);
     expect(nullOperatorB).toEqual(null);
 
-    const operator = handleItemOnScreen("-", "3");
+    const operatorProps = { currentValue: "-", lastSequenceValue: "3" };
+    const operator = handleItemOnScreen(operatorProps);
     expect(operator.innerHTML).toEqual("-");
+
+    const zeroNumberAfterOperatorProps = {
+      currentValue: "0",
+      lastSequenceValue: "+",
+    };
+    const zeroNumberAfterOperator = handleItemOnScreen(
+      zeroNumberAfterOperatorProps
+    );
+    expect(zeroNumberAfterOperator).toEqual(null);
   });
 });

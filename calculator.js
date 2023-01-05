@@ -8,10 +8,13 @@ const initCalculator = () => {
     const currentValue = e.target.innerHTML;
     const lastSequenceValue = currentSequence[currentSequence.length - 1];
 
-    const item = handleItemOnScreen(currentValue, lastSequenceValue);
-    if (item) document.getElementById("screen").appendChild(item);
+    const item = handleItemOnScreen({ currentValue, lastSequenceValue });
+    if (item) {
+      document.getElementById("screen").appendChild(item);
 
-    currentSequence.push(currentValue);
+      currentSequence.push(item.innerHTML);
+      console.log("currentSequence: ", currentSequence);
+    }
   };
 
   buttons.forEach((button) =>
