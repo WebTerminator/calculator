@@ -2,6 +2,11 @@ body {
   background-color: #ffa;
 }
 
+.calculator {
+  width: 600px;
+  margin: 0 auto;
+}
+
 .screen {
   background-color: aqua;
   height: 100px;
@@ -17,6 +22,7 @@ body {
 
 .numbers {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .numbers button {

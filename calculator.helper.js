@@ -30,7 +30,7 @@ export const handleItemOnScreen = ({ currentValue, lastSequenceValue }) => {
   return getTextNode({ currentValue, HTMLTag: "span" });
 };
 
-export const handleMathOperation = ({ num1, num2, operation }) => {
+const handleMathOperation = ({ num1, num2, operation }) => {
   let result;
 
   if (operation === "+") {
@@ -47,4 +47,23 @@ export const handleMathOperation = ({ num1, num2, operation }) => {
   }
 
   return result;
+};
+
+export const handleOperatorCase = ({ itemValue, screenSequence }) => {
+  if (screenSequence.length === 3) {
+    const [num1, operation, num2] = screenSequence;
+
+    const result = handleMathOperation({
+      num1: parseInt(num1),
+      num2: parseInt(num2),
+      operation,
+    });
+
+    console.log("result: ", result);
+    screenSequence = [];
+    screenSequence.push(result);
+  }
+  screenSequence.push(itemValue);
+
+  return screenSequence;
 };

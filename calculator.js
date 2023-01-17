@@ -1,8 +1,8 @@
 import {
   handleItemOnScreen,
   isOperator,
-  handleMathOperation,
   getTextNode,
+  handleOperatorCase,
 } from "./calculator.helper.js";
 
 const initCalculator = () => {
@@ -11,16 +11,13 @@ const initCalculator = () => {
     buttons = document.querySelectorAll("button");
 
   const handleClickEvent = ({ target: { innerHTML } }) => {
-    const currentValue = innerHTML;
-
-    const lastCurrentSequenceValue = screenSequence[screenSequence.length - 1];
-
-    const item = handleItemOnScreen({
-      currentValue,
-      lastSequenceValue: lastCurrentSequenceValue,
-    });
-
-    const screen = document.getElementById("screen");
+    const currentValue = innerHTML,
+      lastCurrentSequenceValue = screenSequence[screenSequence.length - 1],
+      item = handleItemOnScreen({
+        currentValue,
+        lastSequenceValue: lastCurrentSequenceValue,
+      }),
+      screen = document.getElementById("screen");
 
     if (item) {
       const itemValue = item.innerHTML;
@@ -28,21 +25,13 @@ const initCalculator = () => {
       if (isOperator(itemValue)) {
         currentSequence = "";
 
-        if (screenSequence.length === 3) {
-          const [num1, operation, num2] = screenSequence;
-
-          const result = handleMathOperation({
-            num1: parseInt(num1),
-            num2: parseInt(num2),
-            operation,
-          });
-
-          screenSequence = [];
-          screenSequence.push(result);
-        }
-        screenSequence.push(itemValue);
+        screenSequence = handleOperatorCase({
+          itemValue,
+          screenSequence,
+        });
       } else {
         currentSequence += itemValue;
+
         if (!isOperator(lastCurrentSequenceValue)) {
           screenSequence.pop();
         }
