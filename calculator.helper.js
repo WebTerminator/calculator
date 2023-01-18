@@ -19,17 +19,13 @@ export const handleCurrentItem = ({ currentValue, lastSequenceValue }) => {
   const isZeroAfterOperator = lastSequenceCondition && currentValue === "0";
   const isOperatorFirstItem = isCurrentValueOperator && !lastSequenceValue;
 
-  if (
-    isZeroFirstNumber ||
-    isZeroAfterOperator ||
-    isOperatorFirstItem
-  )
+  if (isZeroFirstNumber || isZeroAfterOperator || isOperatorFirstItem)
     return null;
 
   return getTextNode({ currentValue, HTMLTag: "span" });
 };
 
-const handleMathOperation = ({ num1, num2, operation }) => {
+export const handleMathOperation = ({ num1, num2, operation }) => {
   let result;
 
   if (operation === "+") {
@@ -67,7 +63,7 @@ export const handleOperatorCase = ({ itemValue, screenSequence }) => {
     screenSequence.pop();
   }
 
-  screenSequence.push(itemValue);
+  if (itemValue !== "=") screenSequence.push(itemValue);
 
   return screenSequence;
 };

@@ -3,6 +3,7 @@ import {
   isOperator,
   getTextNode,
   handleOperatorCase,
+  handleMathOperation,
 } from "./calculator.helper.js";
 
 const initCalculator = () => {
@@ -28,16 +29,30 @@ const initCalculator = () => {
           screenSequence,
         });
       } else {
-        currentSequence += itemValue;
+        if (itemValue !== "=") {
+          currentSequence += itemValue;
 
-        if (!isOperator(lastCurrentSequenceValue)) {
-          screenSequence.pop();
+          if (!isOperator(lastCurrentSequenceValue)) {
+            screenSequence.pop();
+          }
+
+          screenSequence.push(currentSequence);
         }
-
-        screenSequence.push(currentSequence);
       }
 
       screen.innerHTML = "";
+
+      if (itemValue === "=" && screenSequence.length === 3) {
+        const [num1, operation, num2] = screenSequence;
+        const result = handleMathOperation({
+          num1: parseInt(num1),
+          num2: parseInt(num2),
+          operation,
+        });
+        screenSequence = [];
+        screenSequence.push(result);
+      }
+
       for (let i = 0; i < screenSequence.length; i++) {
         screen.appendChild(
           getTextNode({ currentValue: screenSequence[i], HTMLTag: "span" })
