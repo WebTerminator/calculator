@@ -1,5 +1,5 @@
 import {
-  handleItemOnScreen,
+  handleCurrentItem,
   isOperator,
   getTextNode,
   handleOperatorCase,
@@ -11,10 +11,9 @@ const initCalculator = () => {
     buttons = document.querySelectorAll("button");
 
   const handleClickEvent = ({ target: { innerHTML } }) => {
-    const currentValue = innerHTML,
-      lastCurrentSequenceValue = screenSequence[screenSequence.length - 1],
-      item = handleItemOnScreen({
-        currentValue,
+    const lastCurrentSequenceValue = screenSequence[screenSequence.length - 1],
+      item = handleCurrentItem({
+        currentValue: innerHTML,
         lastSequenceValue: lastCurrentSequenceValue,
       }),
       screen = document.getElementById("screen");
@@ -24,7 +23,6 @@ const initCalculator = () => {
 
       if (isOperator(itemValue)) {
         currentSequence = "";
-
         screenSequence = handleOperatorCase({
           itemValue,
           screenSequence,

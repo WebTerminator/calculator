@@ -1,32 +1,75 @@
 body {
-  background-color: #ffa;
+  font-family: "Roboto", sans-serif;
 }
 
 .calculator {
-  width: 600px;
+  width: 260px;
   margin: 0 auto;
 }
 
-.screen {
-  background-color: aqua;
-  height: 100px;
-  width: 400px;
-  margin-bottom: 20px;
+button {
+  font-family: "Roboto", sans-serif;
+  height: 40px;
   padding: 10px;
+  border: 0;
+  background-color: #1a0dab;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.screen {
+  background-color: #beffff;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen span {
-  padding-right: 3px;
-  font-size: 18px;
+  font-size: 20px;
+  padding: 0 4px;
+}
+
+.controls {
+  display: flex;
 }
 
 .numbers {
   display: flex;
   flex-wrap: wrap;
+  flex: 3;
 }
 
 .numbers button {
-  padding: 10px;
-  margin-right: 10px;
-  cursor: pointer;
+  flex-basis: 33.34%;
+}
+
+.numbers .full-width {
+  flex-basis: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.numbers .border-b {
+  border-bottom: 1px solid #fff;
+}
+
+.numbers .border-sides {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.operators button {
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }

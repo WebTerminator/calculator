@@ -4,20 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="calculator.css" />
     <title>Vanilla JS - Calculator</title>
   </head>
   <body>
     <div class="calculator">
       <div id="screen" class="screen"></div>
-      <div class="numbers">
-        <button>1</button><button>2</button><button>3</button><button>4</button
-        ><button>5</button><button>6</button><button>7</button><button>8</button
-        ><button>9</button><button>0</button>
-
-        <button>+</button><button>/</button><button>-</button><button>x</button
-        ><button>del</button>
+      <div class="controls">
+        <div class="numbers">
+          <button class="border-b">1</button
+          ><button class="border-b border-sides">2</button
+          ><button class="border-b">3</button><button class="border-b">4</button
+          ><button class="border-b border-sides">5</button
+          ><button class="border-b">6</button><button class="border-b">7</button
+          ><button class="border-b border-sides">8</button
+          ><button class="border-b">9</button
+          ><button class="full-width border-b">0</button>
+        </div>
+        <div class="operators">
+          <button>+</button><button>/</button><button>-</button
+          ><button>x</button>
+        </div>
       </div>
+      <button class="full-width">=</button>
     </div>
 
     <script src="calculator.js" type="module"></script>

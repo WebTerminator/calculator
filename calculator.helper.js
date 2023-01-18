@@ -7,7 +7,7 @@ export const getTextNode = ({ currentValue, HTMLTag }) => {
 export const isOperator = (operator) =>
   operator === "+" || operator === "-" || operator === "/" || operator === "x";
 
-export const handleItemOnScreen = ({ currentValue, lastSequenceValue }) => {
+export const handleCurrentItem = ({ currentValue, lastSequenceValue }) => {
   const lastSequenceCondition = isOperator(lastSequenceValue);
   const isCurrentValueOperator = isOperator(currentValue);
 
@@ -20,7 +20,6 @@ export const handleItemOnScreen = ({ currentValue, lastSequenceValue }) => {
   const isOperatorFirstItem = isCurrentValueOperator && !lastSequenceValue;
 
   if (
-    isOperatorAlreadyTyped ||
     isZeroFirstNumber ||
     isZeroAfterOperator ||
     isOperatorFirstItem
@@ -59,10 +58,15 @@ export const handleOperatorCase = ({ itemValue, screenSequence }) => {
       operation,
     });
 
-    console.log("result: ", result);
     screenSequence = [];
     screenSequence.push(result);
   }
+  const lastCurrentSequenceValue = screenSequence[screenSequence.length - 1];
+
+  if (isOperator(lastCurrentSequenceValue)) {
+    screenSequence.pop();
+  }
+
   screenSequence.push(itemValue);
 
   return screenSequence;
