@@ -11,10 +11,6 @@ export const handleCurrentItem = ({ currentValue, lastSequenceValue }) => {
   const lastSequenceCondition = isOperator(lastSequenceValue);
   const isCurrentValueOperator = isOperator(currentValue);
 
-  const isOperatorAlreadyTyped =
-    isCurrentValueOperator &&
-    (lastSequenceValue === currentValue || lastSequenceCondition);
-
   const isZeroFirstNumber = currentValue === "0" && !lastSequenceValue;
   const isZeroAfterOperator = lastSequenceCondition && currentValue === "0";
   const isOperatorFirstItem = isCurrentValueOperator && !lastSequenceValue;
@@ -44,18 +40,22 @@ export const handleMathOperation = ({ num1, num2, operation }) => {
   return result;
 };
 
+export const updateSequenceOnceReady = (screenSequence) => {
+  const [num1, operation, num2] = screenSequence;
+  const result = handleMathOperation({
+    num1: parseInt(num1),
+    num2: parseInt(num2),
+    operation,
+  });
+  screenSequence = [];
+  screenSequence.push(result);
+
+  return screenSequence;
+};
+
 export const handleOperatorCase = ({ itemValue, screenSequence }) => {
   if (screenSequence.length === 3) {
-    const [num1, operation, num2] = screenSequence;
-
-    const result = handleMathOperation({
-      num1: parseInt(num1),
-      num2: parseInt(num2),
-      operation,
-    });
-
-    screenSequence = [];
-    screenSequence.push(result);
+    screenSequence = updateSequenceOnceReady(screenSequence);
   }
   const lastCurrentSequenceValue = screenSequence[screenSequence.length - 1];
 

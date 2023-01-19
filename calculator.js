@@ -3,7 +3,7 @@ import {
   isOperator,
   getTextNode,
   handleOperatorCase,
-  handleMathOperation,
+  updateSequenceOnceReady,
 } from "./calculator.helper.js";
 
 const initCalculator = () => {
@@ -43,14 +43,7 @@ const initCalculator = () => {
       screen.innerHTML = "";
 
       if (itemValue === "=" && screenSequence.length === 3) {
-        const [num1, operation, num2] = screenSequence;
-        const result = handleMathOperation({
-          num1: parseInt(num1),
-          num2: parseInt(num2),
-          operation,
-        });
-        screenSequence = [];
-        screenSequence.push(result);
+        screenSequence = updateSequenceOnceReady(screenSequence);
       }
 
       for (let i = 0; i < screenSequence.length; i++) {
